@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg mb-4">
+  <div class="container-fluid">
+    <div>
+      <a href="/"
+        ><img class="mx-4" src="/static/Patitas logo.png" width="50" height="50" />Patitas</a
+      >
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item px-3">
+          <div class="dropdown" id="dropdown">
+            <button id="btn-dropdown" class="btn dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Busquedas
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/busquedas">Ver todas las mascotas</a></li>
+              <li><a class="dropdown-item" href="/cargar_busqueda">Cargar una busqueda</a></li>
+              <li><a class="dropdown-item" href="/ver_busquedas">Ver mis busquedas</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item px-3">
+          <div class="dropdown" id="dropdown">  
+            <button id="btn-dropdown"  class="btn dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Encontrados
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/encuentros">Ver todas las mascotas</a></li>
+              <li><a class="dropdown-item" href="/cargar_encuentro">Cargar mascota encontrada</a></li>
+              <li><a class="dropdown-item" href="/ver_encuentros">Ver mis mascotas encontradas</a></li>
+            </ul>
+          </div>
+        </li>
+        {% if not session.get('logueado') %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Iniciar Sesion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/registro">Registrarse</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

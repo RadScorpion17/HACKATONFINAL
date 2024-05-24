@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <header>
+        {% include "includes/navbar.html" %}
+    </header>
+
+    <div class="text-center">
+        <h1>Registro de usuario</h1>
+    </div>
+    <div class="py-5">
+        <form action="/registro" method="post" class="">
+            <div class="col-6 mx-auto">
+                <label for="nombre">Ingrese su nombre</label>
+                <input class="form-control" type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class=" col-6 mx-auto">
+                <label for="apellido">Ingrese su apellido</label>
+                <input class="form-control" type="text" id="apellido" name="apellido" required>
+            </div>
+            <div class="col-6 mx-auto">
+                <label for="email">Ingrese su correo </label>
+                <input class="form-control" type="email" id="email" name="email" required>
+            </div>
+            <div class="col-6 mx-auto">
+                <label for="telefono">Ingrese su telefono </label>
+                <input class="form-control" type="text" id="telefono" name="telefono" required>
+            </div>
+            <div class="col-6 mx-auto">
+                <label for="telefono">Ingrese su contraseña </label>
+                <input class="form-control" type="password" placeholder="Ingrese su contraseña" id="password"
+                    name="password" required>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <input type="submit" value="Aceptar" class="btn btn-primary" style="width: 150px;">
+                    </div>
+                </div>
+
+
+                <!-- boton de envio -->
+
+        </form>
+
+    </div>
+    
+    <footer class="bg-success-subtle">
+        {% include "includes/navbar.html" %}
+    </footer>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function (event) {
+            // toma el elemento formulario de registro para verificar que todos los campos esten cargados 
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const password = document.getElementById('password').value;
+
+            if (!nombre || !apellido || !email || !telefono || !password) {
+                alert('Todos los campos son obligatorios.');
+                event.preventDefault(); // Evita el envío del formulario
+            }
+
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

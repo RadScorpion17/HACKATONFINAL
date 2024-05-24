@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Mascotas perdidas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        {% include "includes/navbar.html" %}
+    </header>
+
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Fecha y hora</th>
+                    <th>Especie</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Descripcion de Mascota</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for busqueda in busquedas %}
+                <tr>
+                    <td>{{ busqueda.descripcion }}</td>
+                    <td>{{ busqueda.estado }}</td>
+                    <td>{{ busqueda.fecha_y_hora }}</td>
+                    <td>{{ busqueda.especie }}</td>
+                    <td>{{ busqueda.raza }}</td>
+                    <td>{{ busqueda.edad }}</td>
+                    <td>{{ busqueda.descripcion_mascota }}</td>
+                    <td>
+                        <img src="{{ url_for('serve_images', filename = busqueda.img) }}" alt="Imagen de Mascota"
+                            class="img-thumbnail" style="max-width: 100px;">
+                    </td>
+                    <td>
+                        <div>
+                            <form action="{{ url_for('modificar_busqueda',busqueda_id=busqueda.id)}}" method="GET"
+                                class="me-2">
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </form>
+                            <form action="{{ url_for('eliminar_busqueda',busqueda_id=busqueda.id)}}" method="POST">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center align-items-center justify-content-center">
+        <a class="btn btn-success" href="/cargar_busqueda" role="button">Cargar una busqueda</a>
+    </div>
+
+    <footer class="bg-success-subtle">
+        {% include "includes/footer.html" %}
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

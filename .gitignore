@@ -1,0 +1,6 @@
+# Ignorar venv
+.venv/
+
+# Ignorar base de datos
+
+instance/

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="bg-succcess">Modificar encuentro</title>
+    <!-- AQUI SE IMPORTAN LOS DATOS DE CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <header>
+        {% include "includes/navbar.html" %}
+    </header>
+    <div class="container mt-5">
+        <strong>
+            <h2 class="mb-4 text-warning">Modidicar Encuentro</h2>
+        </strong>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <form method="post" enctype="multipart/form-data">
+                    <div>
+                        <label class="text-white"for="descripcion"> Modifique la descripcion de la busqueda </label>
+                        <input type="text" id="descripcion" name="descripcion" value={{encuentro_a_modificar.descripcion}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="fecha_y_hora"> Modifique el fecha de la nota </label>
+                        <input type="date" id="fecha_y_hora" name="fecha_y_hora" value={{encuentro_a_modificar.fecha_y_hora}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="especie"> Modifique la especie de la nota </label>
+                        <input type="text" id="especie" name="especie" value={{mascota_a_modificar.especie}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="raza"> Modifique la raza de la nota </label>
+                        <input type="text" id="raza" name="raza" value={{mascota_a_modificar.raza}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="edad"> Modifique la edad de la nota </label>
+                        <input type="number" id="edad" name="edad" value={{mascota_a_modificar.edad}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="descripcion_mascota"> Modifique la descripcion de la nota </label>
+                        <input type="text" id="descripcion_mascota" name="descripcion_mascota"
+                            value={{mascota_a_modificar.descripcion_mascota}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="file_img"> Modifique la descripcion de la nota </label>
+                        <input type="file" id="file_img" name="img" value={{mascota_a_modificar.img}}>
+                    </div>
+                    <div>
+                        <label class="text-white"for="estado">Estado</label>
+                        <select id="estado" name="estado" required>
+                            <option value="True" {% if encuentro_a_modificar.estado %} selected {% endif %}>Activo</option>
+                            <option value="False" {% if not encuentro_a_modificar.estado %} selected {% endif %}>Inactivo</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Actualizar"> <!-- boton de envio -->
+                </form>
+            </thead>
+        </table>
+    </div>
+
+    <footer class="bg-success-subtle">
+        {% include "includes/footer.html" %}
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

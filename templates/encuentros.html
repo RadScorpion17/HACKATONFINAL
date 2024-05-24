@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Patitas | Mascotas perdidas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        {% include "includes/navbar.html" %}
+    </header>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Mascotas encontradas</h1>
+        <div class="row">
+            {% for encuentro in encontrados %}
+            <div class="col-md-4">
+                <a href="{{ url_for('ver_mascota_encontrada', encontrado_id=encuentro.id)}}">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{ url_for('serve_images', filename = encuentro.img) }}" class="card-img-top"
+                            alt="Imagen de {{ encuentro.especie }}">
+                        <div class="bg-dark card-body">
+                            <h5 class="card-title">{{ encuentro.descripcion }}</h5>
+                            <p class="card-text">Fecha y hora: {{ encuentro.fecha_y_hora }}</p>
+                            <p class="card-text">Especie: {{ encuentro.especie }}</p>
+                            <p class="card-text">Raza: {{ encuentro.raza }}</p>
+                            <p class="card-text">Edad: {{ encuentro.edad }}</p>
+                            <p class="card-text">Descripción de la mascota: {{ encuentro.descripcion_mascota }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="bg-success-subtle">
+        {% include "includes/footer.html" %}
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
